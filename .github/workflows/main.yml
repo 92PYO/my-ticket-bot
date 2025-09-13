@@ -26,8 +26,8 @@ jobs:
           # 원하는 좌석 등급이 따로 있다면 이 값을 변경해야 합니다.
           seat-id: 1_0
           
-          # [해결책] 잘못된 user-agent를 지우고, args를 통해 브라우저 정보를 전달합니다.
-          args: '-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"'
+          # [마지막 시도] Referer 정보를 추가하여 실제 사용자인 것처럼 위장합니다.
+          args: '-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" -H "Referer: https://ticket.melon.com/"'
 
           # 슬랙 알림 설정 (이 부분은 수정하지 않아도 됩니다)
           slack-incoming-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -1,0 +1,27 @@
+name: Melon Ticket Watcher
+on:
+  schedule:
+    # 1분마다 실행합니다.
+    - cron: '*/1 * * * *'
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check Tickets
+        uses: mooyoul/melon-ticket-actions@v1.1.0
+        with:
+          # product-id는 대부분 동일합니다.
+          product-id: 211942
+
+          # 'schedule-id'를 'time-id'로 변경했습니다.
+          # 여기에 원하시는 공연의 time-id 값을 넣으세요.
+          time-id: 20250929
+
+          # 'seat-id'를 'grade-id'로 변경했습니다.
+          # 여기에 원하시는 좌석 등급의 grade-id 값을 넣으세요.
+          grade-id: 100058
+
+          # 슬랙 알림 설정 (이 부분은 수정하지 않아도 됩니다)
+          slack-incoming-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          message: '<!channel> 티켓 발견! 지금 바로 예매하세요!'

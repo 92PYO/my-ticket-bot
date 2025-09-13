@@ -1,11 +1,12 @@
 name: Melon Ticket Watcher
 on:
-      # 이 부분을 추가하면 수동으로 실행할 수 있는 버튼이 생깁니다.
-      workflow_dispatch:
-      
+  # 이 부분을 추가하면 수동으로 실행할 수 있는 버튼이 생깁니다.
+  workflow_dispatch:
+
   schedule:
-    # 1분마다 실행합니다.
+    # 1분마다 실행
     - cron: '*/1 * * * *'
+
 jobs:
   job:
     runs-on: ubuntu-latest
@@ -14,16 +15,16 @@ jobs:
       - name: Check Tickets
         uses: mooyoul/melon-ticket-actions@v1.1.0
         with:
-          # product-id는 대부분 동일합니다.
+          # 제공해주신 공연 ID로 수정했습니다.
           product-id: 211942
 
-          # 'schedule-id'를 'time-id'로 변경했습니다.
-          # 여기에 원하시는 공연의 time-id 값을 넣으세요.
-          time-id: 20250929
+          # 'time-id'를 'schedule-id'로 수정하고, 제공해주신 ID를 입력했습니다.
+          # scheduleNoArray 값이 바로 schedule-id 입니다.
+          schedule-id: 100058
 
-          # 'seat-id'를 'grade-id'로 변경했습니다.
-          # 여기에 원하시는 좌석 등급의 grade-id 값을 넣으세요.
-          grade-id: 100058
+          # 'grade-id'를 'seat-id'로 수정했습니다. (기본값 1_0)
+          # 원하는 좌석 등급이 따로 있다면 이 값을 변경해야 합니다.
+          seat-id: 1_0
 
           # 슬랙 알림 설정 (이 부분은 수정하지 않아도 됩니다)
           slack-incoming-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
